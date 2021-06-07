@@ -7,6 +7,8 @@ use MiladRahimi\PhpRouter\Exceptions\RouteNotFoundException;
 use MiladRahimi\PhpRouter\Router;
 
 use App\Controllers\PageController;
+use App\Controllers\AnnouncementsC;
+use App\Controllers\BookingsController;
 
 class App
 {
@@ -59,6 +61,7 @@ class App
 			View::render404();
 		}
 		catch( InvalidCallableException $e_invalid ) {
+			var_dump($e_invalid);
 			View::render500();
 		}
 	}
@@ -72,7 +75,26 @@ class App
 		$this->router->pattern('id', '\d+');
 
 		// Routes
-		$this->router->get( '/', [ PageController::class, 'index' ] );
+		$this->router->get('/', [PageController::class, 'index']);
+
+		$this->router->get('/login', [PageController::class, 'login']);
+		$this->router->post('/login', [PageController::class, 'processLogin']);
+		$this->router->get('/deconnexion', [PageController::class, 'logout']);
+
+		$this->router->get('/inscription', [PageController::class, 'subscribe']);
+		$this->router->post('/inscription', [PageController::class, 'processSubscribe']);
+
+		$this->router->get('/announcements', [AnnouncementsC::class, 'announcements']);
+		$this->router->get('/my-announcements', [AnnouncementsC::class, 'myAnnouncements']);
+		$this->router->get('/detail/{id}', [AnnouncementsC::class, 'announcebyid']);
+		$this->router->post('/detail/{id}', [AnnouncementsC::class, 'rent']);
+		$this->router->get('/create-announcement', [AnnouncementsC::class, 'announcementCreator']);
+		$this->router->post('/create-announcement', [AnnouncementsC::class, 'createAnnouncement']);
+		
+		$this->router->get('/bookings', [BookingsController::class, 'renterBookings']);
+		$this->router->get('/announcer-bookings', [BookingsController::class, 'announcerBookings']);
+		
+
 	}
 
 	// Singleton pattern locks

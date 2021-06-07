@@ -1,4 +1,4 @@
-name: simple-framework-starter
+name: tu-seras-bienvenu-chez-moi
 recipe: lamp
 config:
   php: '7.4'

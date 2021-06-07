@@ -1,4 +1,5 @@
-<h1>Welcome to this marvelous website</h1>
+<h1>TSBCM</h1>
+
 <p>
-	Well, it's up to you making it marvelous ;)
+	Tu seras bienvenu chez moi
 </p>

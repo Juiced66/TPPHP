@@ -1,0 +1,33 @@
+toutes les réservations d'un annonceur (Locataire Début fin Titre )
+
+USE lamp;
+SELECT u.username locataire, b.begin_at debut, b.end_at fin, a.title titre 
+FROM bookings AS b
+NATURAL JOIN announcements AS a
+NATURAL JOIN users AS u
+WHERE u.iduser = 2;
+
+
+
+
+Toutes les reservations d'un utilisateur (Titre Ville Début fin annonceur )
+USE lamp;
+SELECT u.username Propriétaire, b.begin_at Début, b.end_at Fin, a.title titre
+FROM bookings AS b
+NATURAL JOIN announcements AS a 
+JOIN users AS u ON u.iduser = a.owner_id
+WHERE u.iduser = 1
+
+
+Liste des équipements d'une annonce
+
+USE lamp;
+SELECT f.name_facility nomEquip
+FROM Announcement AS a 
+JOIN Announcement_facilities AS af ON a.id = af.announcement_id
+JOIN Facility AS f ON af.facility_id = f.id
+WHERE a.id = 1;
+
+
+
+
